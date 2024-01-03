@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmuplealaxaj0"]
+[gd_scene load_steps=10 format=3 uid="uid://cmuplealaxaj0"]
 
-[ext_resource type="Script" path="res://scenes/turtle.gd" id="1_1hkni"]
+[ext_resource type="Script" path="res://scenes/turtle/turtle.gd" id="1_1hkni"]
 [ext_resource type="Texture2D" uid="uid://bwfxemeas05r7" path="res://images/turtle/turtle_body.png" id="1_amo22"]
-[ext_resource type="Script" path="res://scenes/Belly.gd" id="2_xbds5"]
-[ext_resource type="Script" path="res://scenes/Gibbles.gd" id="3_kn37o"]
 [ext_resource type="Texture2D" uid="uid://dg3c88moa2sg1" path="res://images/turtle/faces/turtle_face_4.png" id="4_6f6f4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnk4"]
@@ -11,6 +9,9 @@ size = Vector2(241.25, 63)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03qjk"]
 radius = 52.5856
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o2ukc"]
+radius = 123.146
 
 [sub_resource type="Animation" id="Animation_swxah"]
 length = 0.001
@@ -82,24 +83,28 @@ rotation = -0.137881
 scale = Vector2(0.666667, 0.666667)
 texture = ExtResource("1_amo22")
 
+[node name="TurtleFace" type="Sprite2D" parent="TurtleBody"]
+position = Vector2(-337.5, -192)
+texture = ExtResource("4_6f6f4")
+
 [node name="Belly" type="Area2D" parent="TurtleBody"]
 position = Vector2(-247.5, 184.5)
-script = ExtResource("2_xbds5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/Belly"]
 position = Vector2(258.875, 4.5)
 shape = SubResource("RectangleShape2D_rjnk4")
 
-[node name="Gibbles" type="Area2D" parent="TurtleBody"]
-script = ExtResource("3_kn37o")
+[node name="Giblets" type="Area2D" parent="TurtleBody"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/Gibbles"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/Giblets"]
 position = Vector2(180, 189)
 shape = SubResource("CircleShape2D_03qjk")
 
-[node name="TurtleFace" type="Sprite2D" parent="TurtleBody"]
-position = Vector2(-337.5, -192)
-texture = ExtResource("4_6f6f4")
+[node name="Face" type="Area2D" parent="TurtleBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/Face"]
+position = Vector2(-339, -210)
+shape = SubResource("CircleShape2D_o2ukc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -109,5 +114,7 @@ autoplay = "enter"
 
 [connection signal="mouse_entered" from="TurtleBody/Belly" to="." method="_on_belly_mouse_entered"]
 [connection signal="mouse_exited" from="TurtleBody/Belly" to="." method="_on_belly_mouse_exited"]
-[connection signal="mouse_entered" from="TurtleBody/Gibbles" to="." method="_on_gibbles_mouse_entered"]
-[connection signal="mouse_exited" from="TurtleBody/Gibbles" to="." method="_on_gibbles_mouse_exited"]
+[connection signal="mouse_entered" from="TurtleBody/Giblets" to="." method="_on_gibbles_mouse_entered"]
+[connection signal="mouse_exited" from="TurtleBody/Giblets" to="." method="_on_gibbles_mouse_exited"]
+[connection signal="mouse_entered" from="TurtleBody/Face" to="." method="_on_face_mouse_entered"]
+[connection signal="mouse_exited" from="TurtleBody/Face" to="." method="_on_face_mouse_exited"]

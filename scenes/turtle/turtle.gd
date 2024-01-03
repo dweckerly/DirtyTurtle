@@ -7,6 +7,10 @@ extends Node2D
 		"hit spot" : false,
 		"face" : "res://images/turtle/faces/turtle_face_0.png"
 	},
+	"face": {
+		"hit spot" : false,
+		"face" : "res://images/turtle/faces/turtle_face_1.png"
+	},
 	"giblets": {
 		"hit spot" : false,
 		"face" : "res://images/turtle/faces/turtle_face_4.png"
@@ -33,12 +37,17 @@ func set_default_face():
 func _on_belly_mouse_entered():
 	body_parts["belly"]["hit spot"] = true
 
-func _on_gibbles_mouse_entered():
-	body_parts["giblets"]["hit spot"] = true
-
 func _on_belly_mouse_exited():
 	body_parts["belly"]["hit spot"] = false
+
+func _on_gibbles_mouse_entered():
+	body_parts["giblets"]["hit spot"] = true
 
 func _on_gibbles_mouse_exited():
 	body_parts["giblets"]["hit spot"] = false
 
+func _on_face_mouse_entered():
+	body_parts["face"]["hit spot"] = true
+
+func _on_face_mouse_exited():
+	body_parts["face"]["hit spot"] = false
