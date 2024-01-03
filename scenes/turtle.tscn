@@ -1,14 +1,43 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmuplealaxaj0"]
+[gd_scene load_steps=11 format=3 uid="uid://cmuplealaxaj0"]
 
+[ext_resource type="Script" path="res://scenes/turtle.gd" id="1_1hkni"]
 [ext_resource type="Texture2D" uid="uid://bwfxemeas05r7" path="res://images/turtle/turtle_body.png" id="1_amo22"]
 [ext_resource type="Script" path="res://scenes/Belly.gd" id="2_xbds5"]
 [ext_resource type="Script" path="res://scenes/Gibbles.gd" id="3_kn37o"]
+[ext_resource type="Texture2D" uid="uid://dg3c88moa2sg1" path="res://images/turtle/faces/turtle_face_4.png" id="4_6f6f4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnk4"]
 size = Vector2(241.25, 63)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03qjk"]
 radius = 52.5856
+
+[sub_resource type="Animation" id="Animation_swxah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurtleBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(579, 312)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TurtleBody:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.137881]
+}
 
 [sub_resource type="Animation" id="Animation_0uq51"]
 resource_name = "enter"
@@ -38,33 +67,6 @@ tracks/1/keys = {
 "values": [0.207694, -0.137881, 0.207694, -0.137881, 0.207694, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_swxah"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TurtleBody:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(579, 312)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TurtleBody:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.137881]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q4dea"]
 _data = {
 "RESET": SubResource("Animation_swxah"),
@@ -72,6 +74,7 @@ _data = {
 }
 
 [node name="Turtle" type="Node2D"]
+script = ExtResource("1_1hkni")
 
 [node name="TurtleBody" type="Sprite2D" parent="."]
 position = Vector2(579, 312)
@@ -94,8 +97,17 @@ script = ExtResource("3_kn37o")
 position = Vector2(180, 189)
 shape = SubResource("CircleShape2D_03qjk")
 
+[node name="TurtleFace" type="Sprite2D" parent="TurtleBody"]
+position = Vector2(-337.5, -192)
+texture = ExtResource("4_6f6f4")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_q4dea")
 }
 autoplay = "enter"
+
+[connection signal="mouse_entered" from="TurtleBody/Belly" to="." method="_on_belly_mouse_entered"]
+[connection signal="mouse_exited" from="TurtleBody/Belly" to="." method="_on_belly_mouse_exited"]
+[connection signal="mouse_entered" from="TurtleBody/Gibbles" to="." method="_on_gibbles_mouse_entered"]
+[connection signal="mouse_exited" from="TurtleBody/Gibbles" to="." method="_on_gibbles_mouse_exited"]
