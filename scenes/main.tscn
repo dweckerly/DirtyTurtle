@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnnosrtfl0klf"]
+
+[ext_resource type="Texture2D" uid="uid://bp3qil74lsi88" path="res://images/bg.png" id="1_ajy15"]
+[ext_resource type="PackedScene" uid="uid://cmuplealaxaj0" path="res://scenes/turtle.tscn" id="5_jg4je"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(577.5, 337)
+scale = Vector2(1.06163, 1.12963)
+texture = ExtResource("1_ajy15")
+
+[node name="Turtle" parent="." instance=ExtResource("5_jg4je")]

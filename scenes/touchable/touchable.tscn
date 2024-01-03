@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://1gkpetuaunv8"]
+
+[ext_resource type="Script" path="res://scenes/touchable/Touchable.gd" id="1_ms3mp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo108"]
+
+[node name="Touchable" type="Area2D"]
+script = ExtResource("1_ms3mp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jo108")

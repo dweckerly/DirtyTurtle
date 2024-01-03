@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ciinu4p31bqxi"]
+
+[ext_resource type="FontFile" uid="uid://l65608iytcn2" path="res://fonts/Super Reduce.ttf" id="1_tgtig"]
+
+[resource]
+default_font = ExtResource("1_tgtig")
+default_font_size = 40
