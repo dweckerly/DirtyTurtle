@@ -50,21 +50,33 @@ extends Node2D
 }
 
 var touching = false
+var face_original_pos = Vector2(0, 0)
+var mouse_touch_pos = Vector2(0, 0)
 
 func _ready():
 	set_default_face()
+	face_original_pos = face_sprite.position
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		for key in body_parts:
 			if body_parts[key]["hit spot"]:
+				mouse_touch_pos = get_viewport().get_mouse_position()
 				change_face(body_parts[key]["face"])
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
 		set_default_face()
 	
 	if touching and event is InputEventMouseMotion:
-		print(event.velocity)
-	 
+		shake_face()
+	else:
+		face_sprite.position = face_original_pos
+
+func shake_face():
+	var mouse_pos = get_viewport().get_mouse_position()
+	var x_offset = mouse_pos.x - mouse_touch_pos.x
+	var y_offset = mouse_pos.y - mouse_touch_pos.y
+	face_sprite.position = Vector2(face_original_pos.x + x_offset, face_original_pos.y + y_offset)
+
 func change_face(face_ref):
 	touching = true
 	face_sprite.texture = load(face_ref)
