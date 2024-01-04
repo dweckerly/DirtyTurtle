@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmuplealaxaj0"]
+[gd_scene load_steps=18 format=3 uid="uid://cmuplealaxaj0"]
 
 [ext_resource type="Script" path="res://scenes/turtle/turtle.gd" id="1_1hkni"]
 [ext_resource type="Texture2D" uid="uid://bwfxemeas05r7" path="res://images/turtle/turtle_body.png" id="1_amo22"]
@@ -7,8 +7,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjnk4"]
 size = Vector2(241.25, 130.5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wows0"]
+radius = 94.5
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2ukc"]
 radius = 100.545
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_82b0u"]
+radius = 51.5267
+height = 256.608
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1fy3f"]
+radius = 82.4282
+height = 356.041
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03qjk"]
 radius = 67.6497
@@ -26,6 +37,9 @@ size = Vector2(202.5, 51.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5opg"]
 radius = 140.304
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vv2yt"]
+size = Vector2(370.5, 301.718)
 
 [sub_resource type="Animation" id="Animation_swxah"]
 length = 0.001
@@ -107,11 +121,31 @@ texture = ExtResource("4_6f6f4")
 position = Vector2(1.5, 197.25)
 shape = SubResource("RectangleShape2D_rjnk4")
 
+[node name="Butt" type="Area2D" parent="TurtleBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/Butt"]
+position = Vector2(340.5, 93)
+shape = SubResource("CircleShape2D_wows0")
+
 [node name="Face" type="Area2D" parent="TurtleBody"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/Face"]
 position = Vector2(-342, -207)
 shape = SubResource("CircleShape2D_o2ukc")
+
+[node name="FeetBack" type="Area2D" parent="TurtleBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/FeetBack"]
+position = Vector2(304.5, 292.5)
+rotation = -1.68773
+shape = SubResource("CapsuleShape2D_82b0u")
+
+[node name="FeetFront" type="Area2D" parent="TurtleBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/FeetFront"]
+position = Vector2(-259.5, 313.5)
+rotation = 1.66504
+shape = SubResource("CapsuleShape2D_1fy3f")
 
 [node name="Giblets" type="Area2D" parent="TurtleBody"]
 
@@ -145,6 +179,14 @@ shape = SubResource("RectangleShape2D_gwxjt")
 position = Vector2(-120, -144)
 shape = SubResource("CircleShape2D_i5opg")
 
+[node name="ShellBack" type="Area2D" parent="TurtleBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurtleBody/ShellBack"]
+position = Vector2(187.5, -114)
+rotation = -0.280998
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_vv2yt")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_q4dea")
@@ -153,8 +195,14 @@ autoplay = "enter"
 
 [connection signal="mouse_entered" from="TurtleBody/Belly" to="." method="_on_belly_mouse_entered"]
 [connection signal="mouse_exited" from="TurtleBody/Belly" to="." method="_on_belly_mouse_exited"]
+[connection signal="mouse_entered" from="TurtleBody/Butt" to="." method="_on_butt_mouse_entered"]
+[connection signal="mouse_exited" from="TurtleBody/Butt" to="." method="_on_butt_mouse_exited"]
 [connection signal="mouse_entered" from="TurtleBody/Face" to="." method="_on_face_mouse_entered"]
 [connection signal="mouse_exited" from="TurtleBody/Face" to="." method="_on_face_mouse_exited"]
+[connection signal="mouse_entered" from="TurtleBody/FeetBack" to="." method="_on_feet_back_mouse_entered"]
+[connection signal="mouse_exited" from="TurtleBody/FeetBack" to="." method="_on_feet_back_mouse_exited"]
+[connection signal="mouse_entered" from="TurtleBody/FeetFront" to="." method="_on_feet_front_mouse_entered"]
+[connection signal="mouse_exited" from="TurtleBody/FeetFront" to="." method="_on_feet_front_mouse_exited"]
 [connection signal="mouse_entered" from="TurtleBody/Giblets" to="." method="_on_gibbles_mouse_entered"]
 [connection signal="mouse_exited" from="TurtleBody/Giblets" to="." method="_on_gibbles_mouse_exited"]
 [connection signal="mouse_entered" from="TurtleBody/Head" to="." method="_on_head_mouse_entered"]
@@ -165,3 +213,5 @@ autoplay = "enter"
 [connection signal="mouse_exited" from="TurtleBody/ShellTip" to="." method="_on_shell_tip_mouse_exited"]
 [connection signal="mouse_entered" from="TurtleBody/ShellFront" to="." method="_on_shell_front_mouse_entered"]
 [connection signal="mouse_exited" from="TurtleBody/ShellFront" to="." method="_on_shell_front_mouse_exited"]
+[connection signal="mouse_entered" from="TurtleBody/ShellBack" to="." method="_on_shell_back_mouse_entered"]
+[connection signal="mouse_exited" from="TurtleBody/ShellBack" to="." method="_on_shell_back_mouse_exited"]

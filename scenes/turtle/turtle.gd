@@ -7,9 +7,21 @@ extends Node2D
 		"hit spot" : false,
 		"face" : "res://images/turtle/faces/turtle_face_3.png"
 	},
+	"butt": {
+		"hit spot" : false,
+		"face" : "res://images/turtle/faces/turtle_face_8.png"
+	},
 	"face": {
 		"hit spot" : false,
 		"face" : "res://images/turtle/faces/turtle_face_1.png"
+	},
+	"feet back": {
+		"hit spot" : false,
+		"face" : "res://images/turtle/faces/turtle_face_1.png"
+	},
+	"feet front": {
+		"hit spot" : false,
+		"face" : "res://images/turtle/faces/turtle_face_5.png"
 	},
 	"giblets": {
 		"hit spot" : false,
@@ -20,6 +32,10 @@ extends Node2D
 		"face" : "res://images/turtle/faces/turtle_face_5.png"
 	},
 	"neck": {
+		"hit spot" : false,
+		"face" : "res://images/turtle/faces/turtle_face_0.png"
+	},
+	"shell back": {
 		"hit spot" : false,
 		"face" : "res://images/turtle/faces/turtle_face_0.png"
 	},
@@ -65,6 +81,14 @@ func _on_belly_mouse_exited():
 		set_default_face()
 	body_parts["belly"]["hit spot"] = false
 
+func _on_butt_mouse_entered():
+	body_parts["butt"]["hit spot"] = true
+
+func _on_butt_mouse_exited():
+	if body_parts["butt"]["hit spot"]:
+		set_default_face()
+	body_parts["butt"]["hit spot"] = false
+
 func _on_face_mouse_entered():
 	body_parts["face"]["hit spot"] = true
 
@@ -72,6 +96,22 @@ func _on_face_mouse_exited():
 	if body_parts["face"]["hit spot"]:
 		set_default_face()
 	body_parts["face"]["hit spot"] = false
+
+func _on_feet_back_mouse_entered():
+	body_parts["feet back"]["hit spot"] = true
+
+func _on_feet_back_mouse_exited():
+	if body_parts["feet back"]["hit spot"]:
+		set_default_face()
+	body_parts["feet back"]["hit spot"] = false
+
+func _on_feet_front_mouse_entered():
+	body_parts["feet front"]["hit spot"] = true
+
+func _on_feet_front_mouse_exited():
+	if body_parts["feet front"]["hit spot"]:
+		set_default_face()
+	body_parts["feet front"]["hit spot"] = false
 
 func _on_gibbles_mouse_entered():
 	body_parts["giblets"]["hit spot"] = true
@@ -97,6 +137,14 @@ func _on_neck_mouse_exited():
 		set_default_face()
 	body_parts["neck"]["hit spot"] = false
 
+func _on_shell_back_mouse_entered():
+	body_parts["shell back"]["hit spot"] = true
+
+func _on_shell_back_mouse_exited():
+	if body_parts["shell back"]["hit spot"]:
+		set_default_face()
+	body_parts["shell back"]["hit spot"] = false
+
 func _on_shell_front_mouse_entered():
 	body_parts["shell front"]["hit spot"] = true
 
@@ -112,6 +160,7 @@ func _on_shell_tip_mouse_exited():
 	if body_parts["shell tip"]["hit spot"]:
 		set_default_face()
 	body_parts["shell tip"]["hit spot"] = false
+
 
 
 
