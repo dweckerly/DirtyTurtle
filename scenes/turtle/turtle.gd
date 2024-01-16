@@ -173,6 +173,3 @@ func _on_shell_tip_mouse_exited():
 		set_default_face()
 	body_parts["shell tip"]["hit spot"] = false
 
-
-
-

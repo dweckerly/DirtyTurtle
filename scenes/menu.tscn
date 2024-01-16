@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgpupgp7y6lco"]
+[gd_scene load_steps=6 format=3 uid="uid://bgpupgp7y6lco"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_tnc8c"]
 [ext_resource type="Theme" uid="uid://ciinu4p31bqxi" path="res://menu.tres" id="2_maf26"]
 [ext_resource type="Texture2D" uid="uid://bp3qil74lsi88" path="res://images/bg.png" id="2_tap7c"]
+[ext_resource type="FontFile" uid="uid://d1thfkkf5pdlw" path="res://fonts/Curvilingus.otf" id="4_tabx2"]
+
+[sub_resource type="Theme" id="Theme_jf0e6"]
+default_font = ExtResource("4_tabx2")
+default_font_size = 115
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -18,6 +23,26 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_tap7c")
+
+[node name="TitleContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 100
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="TitleContainer"]
+layout_mode = 2
+theme = SubResource("Theme_jf0e6")
+theme_override_colors/default_color = Color(0.980392, 1, 0.462745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[wave]Touch My Turtle"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
